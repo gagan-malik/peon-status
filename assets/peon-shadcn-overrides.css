@@ -1,11 +1,26 @@
 /**
- * Peon / shadcn UI alignment — MUST load after global.css (via status-website.links).
- * Fixes Roboto reset, Svelte defaults, and typography to match peon app/globals.css.
+ * Peon status page — full layout + shadcn-adjacent polish.
+ * Loads after global.css + Svelte bundles; uses !important where upstream wins.
  */
 
-/* Base: beat global.css body { font-family: Roboto } */
-html body,
-#sapper {
+:root {
+  --peon-radius: 0.625rem;
+  --peon-radius-lg: 0.75rem;
+  --peon-border: #e4e4e7;
+  --peon-muted: #71717a;
+  --peon-fg: #18181b;
+  --peon-primary: #3b82f6;
+  --peon-primary-hover: #2563eb;
+  --peon-surface: #ffffff;
+  --peon-page: #f4f4f5;
+}
+
+html {
+  color-scheme: light;
+}
+
+html body {
+  margin: 0 !important;
   font-family:
     Inter,
     system-ui,
@@ -14,165 +29,333 @@ html body,
     "Segoe UI",
     Roboto,
     sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--peon-page) !important;
+  color: var(--peon-fg) !important;
 }
 
-/* Headings — shadcn / marketing: semibold, tight tracking */
-#sapper h1 {
-  font-size: clamp(1.75rem, 4vw, 2.25rem) !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.025em !important;
-  line-height: 1.2 !important;
-  color: #252525 !important;
-  margin: 0 0 0.75rem 0 !important;
+#sapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-#sapper h2 {
-  font-size: 1.125rem !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.02em !important;
-  color: #252525 !important;
-}
-
-#sapper h3 {
-  opacity: 1 !important;
-  font-size: 0.75rem !important;
-  font-weight: 600 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
-  color: #71717a !important;
-}
-
-#sapper h4 {
-  font-weight: 600 !important;
-  color: #252525 !important;
-}
-
-/* Intro — muted foreground */
-#sapper header p.lead,
-#sapper p.lead {
-  font-size: 1rem !important;
-  line-height: 1.6 !important;
-  color: #71717a !important;
-}
-
-#sapper header p.lead a,
-#sapper main p.lead a {
-  color: #3b82f6 !important;
-  text-decoration: underline !important;
-  text-underline-offset: 2px !important;
-}
-
-#sapper header p.lead a:hover,
-#sapper main p.lead a:hover {
-  color: #2563eb !important;
-}
-
-/* Nav — zinc links, primary active */
+/* ——— Nav: compact app-style bar ——— */
 #sapper nav {
-  box-shadow: 0 1px 0 rgb(0 0 0 / 4%) !important;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--peon-border) !important;
+  background: rgb(255 255 255 / 92%) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#sapper nav .container {
+  max-width: 72rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0.625rem 1.25rem !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.75rem 1rem !important;
+  box-sizing: border-box !important;
+}
+
+#sapper nav ul {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 0.125rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
 }
 
 #sapper nav a {
+  display: block !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.8125rem !important;
   font-weight: 500 !important;
-  color: #71717a !important;
+  color: var(--peon-muted) !important;
   text-decoration: none !important;
-  transition: color 0.15s ease !important;
+  border-radius: var(--peon-radius) !important;
+  border-bottom: none !important;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease !important;
 }
 
 #sapper nav a:hover {
-  color: #252525 !important;
+  color: var(--peon-fg) !important;
+  background: #f4f4f5 !important;
 }
 
 #sapper nav a[aria-current="page"] {
-  color: #3b82f6 !important;
+  color: var(--peon-primary) !important;
   font-weight: 600 !important;
+  background: #eff6ff !important;
 }
 
 #sapper nav .logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.65rem !important;
+  padding: 0.25rem 0 !important;
+  font-size: 1rem !important;
   font-weight: 600 !important;
-  color: #252525 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--peon-fg) !important;
 }
 
 #sapper nav .logo img {
-  border-radius: 0.625rem !important;
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  object-fit: contain !important;
+  border-radius: var(--peon-radius) !important;
 }
 
-/* Cards / articles — match --radius 0.625rem */
-#sapper article {
-  border-radius: 0.625rem !important;
+/* Kill default bottom border tab style from global [aria-current] */
+#sapper nav [aria-current] {
+  border-bottom: none !important;
+}
+
+/* ——— Main column ——— */
+#sapper main.container {
+  flex: 1 1 auto;
+  max-width: 72rem !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 1.75rem 1.25rem 3rem !important;
+  box-sizing: border-box !important;
+}
+
+/* Intro card */
+#sapper main > header {
+  margin-bottom: 2rem !important;
+  padding: 1.5rem 1.5rem !important;
+  background: var(--peon-surface) !important;
+  border: 1px solid var(--peon-border) !important;
+  border-radius: var(--peon-radius-lg) !important;
   box-shadow:
-    0 1px 2px rgb(0 0 0 / 5%),
+    0 1px 2px rgb(0 0 0 / 4%),
+    0 1px 3px rgb(0 0 0 / 3%) !important;
+}
+
+#sapper main header h1 {
+  font-size: clamp(1.375rem, 3vw, 1.875rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.25 !important;
+  color: var(--peon-fg) !important;
+  margin: 0 0 0.75rem 0 !important;
+}
+
+#sapper main header p.lead,
+#sapper main p.lead {
+  margin: 0 !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.65 !important;
+  color: var(--peon-muted) !important;
+}
+
+#sapper main header p.lead strong,
+#sapper main p.lead strong {
+  color: #3f3f46 !important;
+  font-weight: 600 !important;
+}
+
+#sapper main header p.lead a,
+#sapper main p.lead a {
+  color: var(--peon-primary) !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgb(59 130 246 / 35%) !important;
+  transition: color 0.12s ease !important;
+}
+
+#sapper main header p.lead a:hover,
+#sapper main p.lead a:hover {
+  color: var(--peon-primary-hover) !important;
+  border-bottom-color: var(--peon-primary) !important;
+}
+
+/* ——— Section titles ——— */
+#sapper main h2 {
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--peon-muted) !important;
+  margin: 0 0 0.75rem 0 !important;
+}
+
+#sapper main h3 {
+  opacity: 1 !important;
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--peon-muted) !important;
+  margin-top: 1.5rem !important;
+}
+
+#sapper main h4 {
+  font-size: 0.9375rem !important;
+  font-weight: 600 !important;
+  color: var(--peon-fg) !important;
+  margin: 0 !important;
+}
+
+/* Live Status row: title + segmented control */
+#sapper .changed {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  margin-bottom: 1.25rem !important;
+}
+
+@media (min-width: 640px) {
+  #sapper .changed {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 1rem 1.5rem !important;
+  }
+}
+
+#sapper .changed h2 {
+  margin: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+#sapper .changed form.r,
+#sapper form.r {
+  display: inline-flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.375rem !important;
+  padding: 0.25rem !important;
+  background: #fafafa !important;
+  border: 1px solid var(--peon-border) !important;
+  border-radius: 9999px !important;
+}
+
+#sapper .changed form.r > div,
+#sapper form.r > div {
+  margin: 0 !important;
+}
+
+#sapper form.r label {
+  margin: 0 !important;
+  padding: 0.4rem 0.85rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  color: var(--peon-muted) !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  cursor: pointer !important;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease !important;
+}
+
+#sapper .r input:checked + label {
+  background: var(--peon-surface) !important;
+  color: var(--peon-primary) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 6%) !important;
+}
+
+/* ——— Status cards ——— */
+#sapper article {
+  border-radius: var(--peon-radius-lg) !important;
+  border-width: 1px !important;
+  padding: 1rem 1.125rem !important;
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 4%),
+    0 1px 3px rgb(0 0 0 / 3%) !important;
+  transition: box-shadow 0.15s ease !important;
+}
+
+#sapper article:hover {
+  box-shadow:
+    0 2px 8px rgb(0 0 0 / 5%),
     0 1px 3px rgb(0 0 0 / 4%) !important;
 }
 
-#sapper article.up,
-#sapper article.down,
-#sapper article.degraded {
-  border-radius: 0.625rem !important;
+#sapper article + article {
+  margin-top: 0.625rem !important;
 }
 
 #sapper .tag {
   border-radius: 9999px !important;
+  font-size: 0.65rem !important;
   font-weight: 600 !important;
-  letter-spacing: 0.02em !important;
+  letter-spacing: 0.04em !important;
+  padding: 0.2rem 0.5rem !important;
 }
 
-/* Duration radios — pill / segment style */
-#sapper .changed form.r label,
-#sapper form.r label {
-  border-radius: 9999px !important;
-  padding: 0.35rem 0.85rem !important;
-  margin-left: 0.5rem !important;
-  font-size: 0.75rem !important;
-  font-weight: 500 !important;
-  color: #71717a !important;
-  background: #fafafa !important;
-  border: 1px solid #e4e4e7 !important;
-  cursor: pointer !important;
-  transition:
-    background 0.15s ease,
-    color 0.15s ease,
-    border-color 0.15s ease !important;
-}
-
-#sapper .r input:checked + label {
-  background: #eff6ff !important;
-  color: #1d4ed8 !important;
-  border-color: #93c5fd !important;
-  font-weight: 600 !important;
-}
-
-/* Main content links */
+/* Links inside main (incidents, site rows) */
 #sapper main a {
-  color: #3b82f6 !important;
+  color: var(--peon-primary) !important;
+  text-decoration: none !important;
 }
 
 #sapper main a:hover {
-  color: #2563eb !important;
-}
-
-/* Footer */
-#sapper footer {
-  margin-top: 3rem !important;
-  padding-top: 1.5rem !important;
-  border-top: 1px solid #e4e4e7 !important;
-  font-size: 0.8125rem !important;
-  color: #71717a !important;
-}
-
-#sapper footer a {
-  color: #3b82f6 !important;
+  color: var(--peon-primary-hover) !important;
   text-decoration: underline !important;
   text-underline-offset: 2px !important;
 }
 
-#sapper footer a:hover {
-  color: #2563eb !important;
+/* Lead links: no double underline with main a */
+#sapper main header p.lead a:hover {
+  text-decoration: none !important;
 }
 
-/* Loading spinner stroke — primary */
+/* ——— Footer ——— */
+#sapper footer {
+  margin-top: auto !important;
+  padding: 1.5rem 1.25rem 2rem !important;
+  border-top: 1px solid var(--peon-border) !important;
+  background: #fafafa !important;
+  text-align: center !important;
+}
+
+#sapper footer p {
+  margin: 0 !important;
+  font-size: 0.8125rem !important;
+  color: var(--peon-muted) !important;
+}
+
+#sapper footer a {
+  color: var(--peon-primary) !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid transparent !important;
+}
+
+#sapper footer a:hover {
+  color: var(--peon-primary-hover) !important;
+  border-bottom-color: rgb(37 99 235 / 40%) !important;
+}
+
+/* Loading */
 #sapper .loading svg {
-  stroke: #3b82f6 !important;
+  stroke: var(--peon-primary) !important;
+}
+
+#sapper section {
+  margin-bottom: 1.5rem !important;
 }

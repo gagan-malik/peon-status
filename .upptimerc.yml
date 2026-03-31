@@ -25,6 +25,8 @@ status-website:
   metaTags:
     - name: theme-color
       content: "#f4f4f5"
+  # Replace default #333 theme-color from the template (first wins in some browsers)
+  customHeadHtml: "<script>document.querySelector('meta[name=theme-color]')?.setAttribute('content','#f4f4f5')</script>"
   logoUrl: https://peon.online/icons/icon-192.png
   name: Peon
   introTitle: "Peon service status"
