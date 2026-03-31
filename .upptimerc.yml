@@ -5,9 +5,9 @@ owner: gagan-malik
 repo: peon-status
 
 sites:
-  - name: Website (peon.online)
+  - name: Website
     url: https://peon.online
-  - name: App (app.peon.online)
+  - name: App
     url: https://app.peon.online
 
 status-website:
