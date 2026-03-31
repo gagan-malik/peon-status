@@ -1,0 +1,178 @@
+/**
+ * Peon / shadcn UI alignment — MUST load after global.css (via status-website.links).
+ * Fixes Roboto reset, Svelte defaults, and typography to match peon app/globals.css.
+ */
+
+/* Base: beat global.css body { font-family: Roboto } */
+html body,
+#sapper {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings — shadcn / marketing: semibold, tight tracking */
+#sapper h1 {
+  font-size: clamp(1.75rem, 4vw, 2.25rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.2 !important;
+  color: #252525 !important;
+  margin: 0 0 0.75rem 0 !important;
+}
+
+#sapper h2 {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  color: #252525 !important;
+}
+
+#sapper h3 {
+  opacity: 1 !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #71717a !important;
+}
+
+#sapper h4 {
+  font-weight: 600 !important;
+  color: #252525 !important;
+}
+
+/* Intro — muted foreground */
+#sapper header p.lead,
+#sapper p.lead {
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  color: #71717a !important;
+}
+
+#sapper header p.lead a,
+#sapper main p.lead a {
+  color: #3b82f6 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+#sapper header p.lead a:hover,
+#sapper main p.lead a:hover {
+  color: #2563eb !important;
+}
+
+/* Nav — zinc links, primary active */
+#sapper nav {
+  box-shadow: 0 1px 0 rgb(0 0 0 / 4%) !important;
+}
+
+#sapper nav a {
+  font-weight: 500 !important;
+  color: #71717a !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+
+#sapper nav a:hover {
+  color: #252525 !important;
+}
+
+#sapper nav a[aria-current="page"] {
+  color: #3b82f6 !important;
+  font-weight: 600 !important;
+}
+
+#sapper nav .logo {
+  font-weight: 600 !important;
+  color: #252525 !important;
+}
+
+#sapper nav .logo img {
+  border-radius: 0.625rem !important;
+}
+
+/* Cards / articles — match --radius 0.625rem */
+#sapper article {
+  border-radius: 0.625rem !important;
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 5%),
+    0 1px 3px rgb(0 0 0 / 4%) !important;
+}
+
+#sapper article.up,
+#sapper article.down,
+#sapper article.degraded {
+  border-radius: 0.625rem !important;
+}
+
+#sapper .tag {
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Duration radios — pill / segment style */
+#sapper .changed form.r label,
+#sapper form.r label {
+  border-radius: 9999px !important;
+  padding: 0.35rem 0.85rem !important;
+  margin-left: 0.5rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  color: #71717a !important;
+  background: #fafafa !important;
+  border: 1px solid #e4e4e7 !important;
+  cursor: pointer !important;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease !important;
+}
+
+#sapper .r input:checked + label {
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+  border-color: #93c5fd !important;
+  font-weight: 600 !important;
+}
+
+/* Main content links */
+#sapper main a {
+  color: #3b82f6 !important;
+}
+
+#sapper main a:hover {
+  color: #2563eb !important;
+}
+
+/* Footer */
+#sapper footer {
+  margin-top: 3rem !important;
+  padding-top: 1.5rem !important;
+  border-top: 1px solid #e4e4e7 !important;
+  font-size: 0.8125rem !important;
+  color: #71717a !important;
+}
+
+#sapper footer a {
+  color: #3b82f6 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+#sapper footer a:hover {
+  color: #2563eb !important;
+}
+
+/* Loading spinner stroke — primary */
+#sapper .loading svg {
+  stroke: #3b82f6 !important;
+}
