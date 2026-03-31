@@ -15,11 +15,16 @@ status-website:
   # https://gagan-malik.github.io/peon-status/
   # Optional: set cname: status.peon.online and add DNS + Pages custom domain.
   baseUrl: /peon-status
-  # Peon / shadcn-aligned tokens (see assets/peon-theme.css). Raw URL loads without waiting for Pages asset sync.
+  # 1) themeUrl — :root tokens (loads first). 2) global.css (Upptime). 3) links — Inter, then overrides after global.
   themeUrl: https://raw.githubusercontent.com/gagan-malik/peon-status/master/assets/peon-theme.css
   links:
     - rel: stylesheet
       href: https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap
+    - rel: stylesheet
+      href: https://raw.githubusercontent.com/gagan-malik/peon-status/master/assets/peon-shadcn-overrides.css
+  metaTags:
+    - name: theme-color
+      content: "#f4f4f5"
   logoUrl: https://peon.online/icons/icon-192.png
   name: Peon
   introTitle: "Peon service status"
