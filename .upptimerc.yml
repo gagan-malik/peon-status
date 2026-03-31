@@ -15,6 +15,11 @@ status-website:
   # https://gagan-malik.github.io/peon-status/
   # Optional: set cname: status.peon.online and add DNS + Pages custom domain.
   baseUrl: /peon-status
+  # Peon / shadcn-aligned tokens (see assets/peon-theme.css)
+  themeUrl: https://gagan-malik.github.io/peon-status/assets/peon-theme.css
+  links:
+    - rel: stylesheet
+      href: https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap
   logoUrl: https://peon.online/icons/icon-192.png
   name: Peon
   introTitle: "Peon service status"
