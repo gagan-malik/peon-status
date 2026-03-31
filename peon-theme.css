@@ -1,0 +1,123 @@
+/**
+ * Peon / shadcn-aligned theme for Upptime status page.
+ * Mirrors tokens from peon app/globals.css (light mode).
+ * Upptime variables: https://github.com/upptime/status-page/blob/master/static/global.css
+ */
+
+:root {
+  /* Page — zinc-neutral, matches --background / --muted */
+  --body-background-color: #f4f4f5;
+  --body-text-color: #252525;
+
+  /* Surfaces */
+  --card-background-color: #ffffff;
+  --card-border-color: #e4e4e7;
+
+  /* Nav — white bar, zinc border, blue active (primary) */
+  --nav-background-color: #ffffff;
+  --nav-border-bottom-color: #e4e4e7;
+  --nav-current-border-bottom-color: #3b82f6;
+
+  /* Status stripes — emerald/amber/rose aligned with Tailwind semantic */
+  --up-border-left-color: #22c55e;
+  --down-border-left-color: #ef4444;
+  --degraded-border-left-color: #f59e0b;
+  --down-background-color: #fef2f2;
+
+  /* Tags */
+  --tag-color: #ffffff;
+  --tag-up-background-color: #22c55e;
+  --tag-down-background-color: #ef4444;
+  --tag-degraded-background-color: #f59e0b;
+  --change-background-color: #fbbf24;
+
+  /* Primary actions — blue-500 */
+  --error-button-border-color: #3b82f6;
+  --error-button-background-color: #3b82f6;
+  --error-button-color: #ffffff;
+  --submit-button-border-color: #3b82f6;
+  --submit-button-background-color: #3b82f6;
+  --submit-button-color: #ffffff;
+
+  --graph-opacity: 1;
+  --graph-filter: none;
+
+  /* Used by newer global.css */
+  --code-color: #3f3f46;
+  --code-background-color: #f4f4f5;
+  --up-color-color: #252525;
+  --down-color-color: #991b1b;
+  --degraded-color-color: #92400e;
+}
+
+/* Typography — Inter matches Peon app/layout.tsx */
+#sapper,
+body {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Cards — shadcn radius token 0.625rem */
+#sapper article {
+  border-radius: 0.625rem;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 4%);
+}
+
+#sapper .tag {
+  border-radius: 9999px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Nav links: muted default, primary for current */
+#sapper nav a {
+  font-weight: 500;
+  color: #71717a;
+  transition: color 0.15s ease;
+}
+
+#sapper nav a[aria-current] {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+#sapper nav a:hover {
+  color: #252525;
+}
+
+#sapper nav a[aria-current]:hover {
+  color: #2563eb;
+}
+
+#sapper nav .logo {
+  font-weight: 600;
+  color: #252525;
+}
+
+#sapper nav .logo img {
+  border-radius: 0.625rem;
+}
+
+/* Headings */
+#sapper h1,
+#sapper h2 {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #252525;
+}
+
+#sapper h3 {
+  opacity: 1;
+  color: #71717a;
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
